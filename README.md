@@ -1,4 +1,4 @@
-# WhataData - Implementation of Data Structures and Algorithms in Python
+# WhataData - Implementation of Data Structures and Algorithms in Python and Java
 > Written by Lewis Kim
 
 ### Description

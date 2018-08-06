@@ -3,12 +3,6 @@
 
 ### Description
 
-PH Description
+This repository contains various data structures and algorithms (e.g. linked lists, hashmaps, trees, Dijkstra's algorithm) implemented in both Python and Java, with potentially C++ to come. 
 
-### Installation
-
-The data structures in WhataData were written in Python 3.6, and may not work with Python 2.
-
-There are no required packages, as...
-
-To run...
+These DS&A are mainly for my practice/learning purposes, and may not necessarily be correct in its current state.

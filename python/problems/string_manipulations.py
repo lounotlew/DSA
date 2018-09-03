@@ -13,3 +13,4 @@ of STRING."""
 def remove_duplicate_chars(string):
 	return "".join(sorted({c for c in list(string)}, key=string.index))
 
+

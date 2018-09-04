@@ -1,6 +1,5 @@
 ##########################################
 # Implementation of sorting algorithms.  #
-# Runtime: O(nlogn).                     #
 #                                        #
 # Written by Lewis Kim.                  #
 ##########################################
@@ -39,8 +38,6 @@ def insertionSort(lst):
 
    Runtime: O(nlogn) average & worst case."""
 def mergeSort(lst):
-	start_time = time.time()
-
 	if len(lst) == 1:
 		return lst
 

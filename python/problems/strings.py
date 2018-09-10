@@ -58,16 +58,44 @@ def reverse_str_words(string):
 	# return output
 
 
+"""Check if a given string STRING is a palindrome.
+   Treats upper and lowercase characters the same.
+
+   Runtime:"""
+def check_palindrome(string):
+	# # Using built-in slicing:
+	# return string == string[::-1]
+
+	# Using pointers:
+	string = string.lower()
+	i = 0
+	j = len(string)-1
+
+	while i < j:
+		if string[i] == string[j]:
+			i += 1
+			j -= 1
+
+		else:
+			return False
+
+	return True
+
+
 """Given a string STRING, return the longest palindromic substring in STRING.
 
    e.g. input: 'babad'
         output: 'bab'"""
 def longest_palindrome_substring(string):
-	return
+	longest_substring = ""
 
+	for i in range(len(string)):
+		j = i + 1
 
+		while j <= len(string) and len(longest_substring) <= len(string[i:]):
+			if check_palindrome(string[i:j]) and len(string[i:j]) > len(longest_substring):
+				longest_substring = string[i:j]
+			j += 1
 
-
-
-
+	return longest_substring
 

@@ -78,29 +78,55 @@ def merge(left, right):
 
    Runtime: O(nlogn) average, O(n^2) worst-case."""
 def quickSort(lst):
+	if len(lst) <= 1:
+		return
+
 	pivot_index = random.choice(range(0, len(lst)))
 	pivot = lst[pivot_index]
 
-	itemFromLeft = 0
-	itemFromRight = len(lst) - 1
+	indexFromLeft = 0
+	indexFromRight = len(lst) - 1
 
-	if len(lst) == 1:
-		return
+	while #indexFromLeft < indexFromRight:
+		if lst[indexFromLeft] <= pivot and lst[indexFromRight] >= pivot:
+			indexFromLeft += 1
+			indexFromRight -= 1
 
-	while itemFromLeft < itemFromRight:
-		if lst[itemFromLeft] < pivot and lst[itemFromRight] < pivot:
-			itemFromLeft += 1
+		elif lst[indexFromLeft] <= pivot and lst[indexFromRight] < pivot:
+			indexFromLeft += 1
 
-		if lst[itemFromLeft] > pivot and lst[itemFromRight] > pivot:
-			itemFromRight -= 1
+		elif lst[indexFromLeft] > pivot and lst[indexFromRight] < pivot:
+			lst[indexFromLeft], lst[indexFromRight] = lst[indexFromRight], lst[indexFromLeft]
+			indexFromLeft += 1
+			indexFromRight -= 1
 
-		if lst[itemFromLeft] > pivot and lst[itemFromRight] < pivot:
-			lst[itemFromLeft], lst[itemFromRight] = lst[itemFromRight], lst[itemFromLeft]
-			itemFromLeft += 1
-			itemFromRight -= 1
+		elif lst[indexFromLeft] > pivot and lst[indexFromRight] >= pivot:
+			indexFromRight -= 1
 
-	quicksort(lst[:pivot_index])
-	quicksort(lst[pivot_index+1:])
+	#partition_index = min(indexFromLeft, indexFromRight)
 
+	quickSort(lst[:partition_index])
+	quickSort(lst[partition_index:])
+
+
+### Heapsort. ###
+
+""".
+
+   Runtime: """
+def heapSort(lst):
+	return
+
+
+
+
+
+### Tests. ###
+
+def test_quicksort():
+	lst = [4, 1, 3, 12, 8, 7, 2, 4]
+	print(lst)
+	quickSort(lst)
+	print(lst)
 
 

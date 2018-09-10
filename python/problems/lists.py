@@ -17,6 +17,33 @@ def remove_duplicates_inplace(nums):
 
 	return
 
+
+"""Given 2 sorted arrays, ARRAY1 and ARRAY2 ARRAY1 and ARRAY2 (size m, n respectively), find
+   the k-th smallest element in the union of ARRAY1 and ARRAY2.
+
+   Complexity: O(n+m)"""
+def kth_smallest_two_sorted_arrays1(array1, array2):
+   return
+
+
+"""Given 2 sorted arrays, ARRAY1 and ARRAY2 ARRAY1 and ARRAY2 (size m, n respectively), find
+   the k-th smallest element in the union of ARRAY1 and ARRAY2.
+
+   Complexity: O(k)"""
+def kth_smallest_two_sorted_arrays2(array1, array2):
+   return
+
+
+"""Given 2 sorted arrays, ARRAY1 and ARRAY2 ARRAY1 and ARRAY2 (size m, n respectively), find
+   the k-th smallest element in the union of ARRAY1 and ARRAY2.
+
+   Complexity: O(logn + logm)"""
+def kth_smallest_two_sorted_arrays3(array1, array2):
+   return
+
+
+
+
 """Given 2 sorted arrays, ARRAY1 and ARRAY2 (size m, n respectively), find the median
    of the 2 sorted arrays. Assume ARRAY1, ARRAY2 are non-empty.
 

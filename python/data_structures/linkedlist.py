@@ -47,38 +47,42 @@ class LinkedList:
 		while curr_node != None:
 
 			if curr_node.value == value:
+				# If the current node is the head node AND single node, i.e. previous is None:
+				if curr_node.prev == None and curr_node.next == None:
+					self.head = None
+					self.tail = None
+					#print("r1")
+					return
 
-				# Check if current node's previous node is None. If True, then this means the current node is the head node,
-				# and we simply point the new head node to be current node's next node.
-				if curr_node.prev == None:
+				### Edge Cases ###
+
+				# If we're removing the head node with a non-null next value:
+				elif curr_node.prev == None and curr_node.next != None:
+					curr_node.next.prev = curr_node.prev
 					self.head = curr_node.next
-					self.head.prev = None
-
-					print("Successfully deleted " + str(value) + " from the list.1")
+					#print("r2")
 					return
 
-				# Check if the current node's next node is None. Then, we're at a tail node, so simply point the new tail node
-				# to be the current node's previous node, and point the new tail node's next node to be None.
-				if curr_node.next == None:
+				# If we're removing a tail node with a non-null previous value:
+				elif curr_node.prev != None and curr_node.next == None:
+					curr_node.prev.next = curr_node.next
 					self.tail = curr_node.prev
-					self.tail.next = None
-
-					print("Successfully deleted " + str(value) + " from the list.2")
+					#print("r2")
 					return
 
-				# Disconnect the previous node from this node, and point this node's next node as the previous node's next node.
-				curr_node.prev.next = curr_node.next
-				curr_node.next.prev = curr_node.prev
+				### End of Edge Cases ###
 
-				print("Successfully deleted " + str(value) + " from the list.3")
-				return
+				# If we're removing every other type of node:
+				else:
+					curr_node.prev.next = curr_node.next
+					curr_node.next.prev = curr_node.prev
+					#print("r3")
+					return
 
 			else:
 				curr_node = curr_node.next
 
-		print(str(value) + " is not in the list.")
-		return
-
+		#print("rn")
 
 	"""Remove all Nodes whose value is VALUE from this linked list."""
 	def remove_all(self, value):
@@ -127,4 +131,58 @@ def test1():
 
 	ll.remove(2)
 	assert(ll.traverse_fw() == [])
+
+	print("Test 1 Passed")
+
+
+def test2():
+	ll = LinkedList()
+	ll.append(2)
+	assert(ll.traverse_fw() == [2])
+
+	ll.remove(2)
+	assert(ll.traverse_fw() == [])
+
+	print("Test 2 Passed")
+
+
+def test3():
+	ll = LinkedList()
+	ll.append(2)
+	assert(ll.traverse_fw() == [2])
+
+	ll.append(3)
+	assert(ll.traverse_fw() == [2, 3])
+
+	ll.append(2)
+	assert(ll.traverse_fw() == [2, 3, 2])
+
+	ll.remove(3)
+	assert(ll.traverse_fw() == [2, 2])
+
+	print("Test 3 Passed")
+
+
+def test4():
+	ll = LinkedList()
+	ll.append(2)
+	assert(ll.traverse_fw() == [2])
+
+	ll.append(3)
+	assert(ll.traverse_fw() == [2, 3])
+
+	ll.append(3)
+	assert(ll.traverse_fw() == [2, 3, 3])
+
+	ll.remove(2)
+	assert(ll.traverse_fw() == [3, 3])
+
+	print("Test 4 Passed")
+
+
+def run_all_tests():
+	test1()
+	test2()
+	test3()
+	test4()
 

@@ -42,8 +42,6 @@ def kth_smallest_two_sorted_arrays3(array1, array2):
    return
 
 
-
-
 """Given 2 sorted arrays, ARRAY1 and ARRAY2 (size m, n respectively), find the median
    of the 2 sorted arrays. Assume ARRAY1, ARRAY2 are non-empty.
 
@@ -54,10 +52,5 @@ def median_of_two_sorted_arrays(array1, array2):
 	return
 
 
-
-"""Given a list of k singly linked lists, LIST, return it as one sorted linked list.
-
-   LeetCode: Hard."""
-def sort_k_linked_lists(list):
-
-	return
+def merged_median(list_of_arrays):
+   return

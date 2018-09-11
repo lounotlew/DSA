@@ -78,35 +78,7 @@ def merge(left, right):
 
    Runtime: O(nlogn) average, O(n^2) worst-case."""
 def quickSort(lst):
-	if len(lst) <= 1:
-		return
-
-	pivot_index = random.choice(range(0, len(lst)))
-	pivot = lst[pivot_index]
-
-	indexFromLeft = 0
-	indexFromRight = len(lst) - 1
-
-	while #indexFromLeft < indexFromRight:
-		if lst[indexFromLeft] <= pivot and lst[indexFromRight] >= pivot:
-			indexFromLeft += 1
-			indexFromRight -= 1
-
-		elif lst[indexFromLeft] <= pivot and lst[indexFromRight] < pivot:
-			indexFromLeft += 1
-
-		elif lst[indexFromLeft] > pivot and lst[indexFromRight] < pivot:
-			lst[indexFromLeft], lst[indexFromRight] = lst[indexFromRight], lst[indexFromLeft]
-			indexFromLeft += 1
-			indexFromRight -= 1
-
-		elif lst[indexFromLeft] > pivot and lst[indexFromRight] >= pivot:
-			indexFromRight -= 1
-
-	#partition_index = min(indexFromLeft, indexFromRight)
-
-	quickSort(lst[:partition_index])
-	quickSort(lst[partition_index:])
+	return
 
 
 ### Heapsort. ###
@@ -119,14 +91,18 @@ def heapSort(lst):
 
 
 
-
-
 ### Tests. ###
 
-def test_quicksort():
+def test_insertionSort():
 	lst = [4, 1, 3, 12, 8, 7, 2, 4]
-	print(lst)
-	quickSort(lst)
-	print(lst)
+	insertionSort(lst)
+	
+	assert(lst == [1, 2, 3, 4, 4, 7, 8, 12])
 
+
+def test_mergeSort():
+	lst = [4, 1, 3, 12, 8, 7, 2, 4]
+	new_lst = mergeSort(lst)
+	
+	assert(new_lst == [1, 2, 3, 4, 4, 7, 8, 12])
 

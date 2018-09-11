@@ -5,23 +5,87 @@
 ######################################################
 
 
-# A Node class that makes up a linked list.
-class Node:
+# A Node class that makes up a single linked list.
+class Node1:
+	def __init__(self, value, next = None):
+		self.value = value
+		self.next = next
+
+
+# A Node class that makes up a double linked list.
+class Node2:
 	def __init__(self, value, prev = None, next = None):
 		self.value = value
 		self.prev = prev
 		self.next = next
 
 
+# A singly linked list.
+class SingleLinkedList:
+
+	"""."""
+	def __init__(self):
+		self.head = None
+
+
+	"""Append a new node whose value is VALUE to this linked list."""
+	def append(self, value):
+		new node = Node1(value)
+
+		if self.head == None:
+			self.head = new_node
+
+		else:
+			self.tail.next = new_node
+
+
+	"""Remove the first instance of the node whose vaue is VALUE from this linked list."""
+	def remove(self, value):
+		prev = None
+		curr_node = self.head
+
+		while curr_node != None:
+			if curr_node.value == value:
+				# If we're removing the head node:
+				if prev == None:
+					self.head = None
+					return
+
+				else:
+					prev.next = curr_node.next
+					return
+
+			else:
+				prev = curr_node
+				curr_node = curr_node.next
+
+		return
+
+
+	"""Traverse this linked list forward from the head."""
+	def traverse():
+		values = []
+		curr_node = self.head
+
+		while curr_node != None:
+			values.append(curr_node.value)
+			curr_node = curr_node.next
+
+		return values
+
+
 # A doubly linked list.
-class LinkedList:
+class DoubleLinkedList:
+
+	"""."""
 	def __init__(self):
 		self.head = None
 		self.tail = None
 
+
 	"""Append a new node whose value is VALUE to this instance of a linked list."""
 	def append(self, value):
-		new_node = Node(value)
+		new_node = Node2(value)
 
 		# Check if the linked list is empty. If True, set this linked list's head and tail as the node to be appended.
 		if self.head == None:
@@ -35,6 +99,7 @@ class LinkedList:
 			new_node.prev = self.tail
 			self.tail.next = new_node
 			self.tail = new_node
+
 
 	"""Remove the first Node whose value is VALUE from this linked list."""
 	def remove(self, value):
@@ -84,9 +149,11 @@ class LinkedList:
 
 		#print("rn")
 
+
 	"""Remove all Nodes whose value is VALUE from this linked list."""
 	def remove_all(self, value):
 		return
+
 
 	"""Traverse through this linked list forward (rightward), from head to tail. Returns all values in a list.""" 
 	def traverse_fw(self):
@@ -101,6 +168,7 @@ class LinkedList:
 			curr_node = curr_node.next
 
 		return values
+
 
 	"""Traverse through this linked list backwards (leftward), from tail to head. Returns all values in a list."""
 	def traverse_bw(self):

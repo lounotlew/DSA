@@ -99,3 +99,33 @@ def longest_palindrome_substring(string):
 
 	return longest_substring
 
+
+"""Check if the string STRING has any duplicate characters
+
+   e.g. 'helo' - True
+        'hello' - False"""
+def has_no_duplicates(string):
+	if len(set([char for char in string])) == len(string):
+		return True
+
+	return False
+
+
+"""Given a string STRING, return the longest substring with no duplicate characters.
+
+   e.g. input - "zzzhelzz"
+        output - 'zhel'"""
+def longest_no_duplicate_substring(string):
+	longest_substring = ""
+
+	for i in range(len(string)):
+		j = i + 1
+
+		while j <= len(string) and len(longest_substring) <= len(string[i:]):
+			if has_no_duplicates(string[i:j]) and len(string[i:j]) > len(longest_substring):
+				longest_substring = string[i:j]
+			j += 1
+
+	return longest_substring
+
+

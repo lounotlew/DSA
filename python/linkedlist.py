@@ -21,22 +21,25 @@ class Node2:
 
 
 # A singly linked list.
-class SingleLinkedList:
+class SinglyLinkedList:
 
 	"""."""
 	def __init__(self):
 		self.head = None
+		self.tail = None
 
 
 	"""Append a new node whose value is VALUE to this linked list."""
 	def append(self, value):
-		new node = Node1(value)
+		new_node = Node1(value)
 
 		if self.head == None:
 			self.head = new_node
+			self.tail = new_node
 
 		else:
 			self.tail.next = new_node
+			self.tail = new_node
 
 
 	"""Remove the first instance of the node whose vaue is VALUE from this linked list."""
@@ -48,7 +51,7 @@ class SingleLinkedList:
 			if curr_node.value == value:
 				# If we're removing the head node:
 				if prev == None:
-					self.head = None
+					self.head = curr_node.next
 					return
 
 				else:
@@ -62,8 +65,47 @@ class SingleLinkedList:
 		return
 
 
+	"""Remove the head of this Linked List."""
+	def remove_head(self):
+		if self.head == None:
+			return
+
+		if self.head == self.tail:
+			self.head = None
+			self.tail = None
+
+		elif self.head.next == None:
+			self.head = None
+
+		else:
+			self.head = self.head.next
+
+		return
+
+
+	"""Remove the tail of this Linked List."""
+	def remove_tail(self):
+		if self.tail == None:
+			return
+
+		if self.tail == self.head:
+			self.tail = None
+			self.head = None
+
+		else:
+			curr_node = self.head
+			prev = None
+
+			while curr_node.next != None:
+				prev = curr_node
+				curr_node = curr_node.next
+
+			prev.next = None
+			self.tail = prev
+
+
 	"""Traverse this linked list forward from the head."""
-	def traverse():
+	def traverse(self):
 		values = []
 		curr_node = self.head
 
@@ -74,8 +116,13 @@ class SingleLinkedList:
 		return values
 
 
+	"""Return the length of this Linked List."""
+	def length(self):
+		return len(self.traverse())
+
+
 # A doubly linked list.
-class DoubleLinkedList:
+class DoublyLinkedList:
 
 	"""."""
 	def __init__(self):
@@ -116,7 +163,6 @@ class DoubleLinkedList:
 				if curr_node.prev == None and curr_node.next == None:
 					self.head = None
 					self.tail = None
-					#print("r1")
 					return
 
 				### Edge Cases ###
@@ -125,14 +171,12 @@ class DoubleLinkedList:
 				elif curr_node.prev == None and curr_node.next != None:
 					curr_node.next.prev = curr_node.prev
 					self.head = curr_node.next
-					#print("r2")
 					return
 
 				# If we're removing a tail node with a non-null previous value:
 				elif curr_node.prev != None and curr_node.next == None:
 					curr_node.prev.next = curr_node.next
 					self.tail = curr_node.prev
-					#print("r2")
 					return
 
 				### End of Edge Cases ###
@@ -141,18 +185,11 @@ class DoubleLinkedList:
 				else:
 					curr_node.prev.next = curr_node.next
 					curr_node.next.prev = curr_node.prev
-					#print("r3")
 					return
 
 			else:
 				curr_node = curr_node.next
 
-		#print("rn")
-
-
-	"""Remove all Nodes whose value is VALUE from this linked list."""
-	def remove_all(self, value):
-		return
 
 
 	"""Traverse through this linked list forward (rightward), from head to tail. Returns all values in a list.""" 
@@ -185,10 +222,54 @@ class DoubleLinkedList:
 		return values
 
 
-### Tests for LinkedList implementation. ###
+### Tests for SinglyLinkedList implementation. ###
 
-def test1():
-	ll = LinkedList()
+def test_sll1():
+	ll = SinglyLinkedList()
+	ll.append(1)
+	ll.append(2)
+	ll.append(3)
+
+	ll.remove(3)
+	assert(ll.traverse() == [1, 2])
+	ll.remove(1)
+	assert(ll.traverse() == [2])
+	ll.remove_head()
+	assert(ll.traverse() == [])
+
+	print("Test 1 Passed")
+
+
+def test_sll2():
+	ll = SinglyLinkedList()
+	ll.append(1)
+	ll.append(2)
+	ll.append(3)
+
+	ll.remove_tail()
+	assert(ll.traverse() == [1, 2])
+	assert(ll.tail() == 2)
+
+	ll.remove_head()
+	assert(ll.traverse() == [1])
+	assert(ll.head() == ll.tail())
+
+	ll.remove_tail()
+	assert(ll.head() == None)
+	assert(ll.tail() == None)
+
+	print("Test 2 Passed")
+
+
+def all_sll_tests():
+	test_sll1()
+	test_sll2()
+
+
+### Tests for DoublyLinkedList implementation. ###
+
+def test_dll1():
+	ll = DoublyLinkedList()
 	ll.append(2)
 	ll.append(2)
 
@@ -203,8 +284,8 @@ def test1():
 	print("Test 1 Passed")
 
 
-def test2():
-	ll = LinkedList()
+def test_dll2():
+	ll = DoublyLinkedList()
 	ll.append(2)
 	assert(ll.traverse_fw() == [2])
 
@@ -214,8 +295,8 @@ def test2():
 	print("Test 2 Passed")
 
 
-def test3():
-	ll = LinkedList()
+def test_dll3():
+	ll = DoublyLinkedList()
 	ll.append(2)
 	assert(ll.traverse_fw() == [2])
 
@@ -231,8 +312,8 @@ def test3():
 	print("Test 3 Passed")
 
 
-def test4():
-	ll = LinkedList()
+def test_dll4():
+	ll = DoublyLinkedList()
 	ll.append(2)
 	assert(ll.traverse_fw() == [2])
 
@@ -248,9 +329,9 @@ def test4():
 	print("Test 4 Passed")
 
 
-def run_all_tests():
-	test1()
-	test2()
-	test3()
-	test4()
+def all_dll_tests():
+	test_dll1()
+	test_dll2()
+	test_dll3()
+	test_dll4()
 

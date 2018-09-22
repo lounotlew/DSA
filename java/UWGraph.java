@@ -15,8 +15,9 @@ static class UWGraph {
 	HashMap<String, HashMap<String, Double>> adjacencyList;
 
 
-	public UWGraph(T root) {
+	public UWGraph(String root) {
 		this.adjacencyList = new HashMap<>();
+		this.adjacencyList.put(root, new HashMap<String, Double>());
 	}
 
 

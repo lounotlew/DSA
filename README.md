@@ -1,4 +1,4 @@
-# WhataData - Implementation of Data Structures, Algorithms, and Programming Problems in Java and Python
+# DSA - Implementation of Data Structures, Algorithms, and Programming Problems in Java and Python
 > Written by Lewis Kim
 
 ### Description

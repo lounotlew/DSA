@@ -135,5 +135,71 @@ class MinHeap:
 		self.data[j] = temp
 
 
-# #
-# class MaxHeap:
+#
+class MaxHeap:
+
+	"""."""
+	def __init__(self):
+		self.data = []
+
+
+
+
+
+
+
+
+
+
+	### Helpers. ###
+
+	"""Return the value of the left child of the node at index INDEX."""
+	def get_left_child(self, index):
+		return self.data[index*2 + 1]
+
+
+	"""Return the value of the right child of the node at index INDEX."""
+	def get_right_child(self, index):
+		return self.data[index*2 + 2]
+
+
+	"""Return the value of the parent of the node at index INDEX."""
+	def get_parent(self, index):
+		return self.data[self.get_parent_index(index)]
+
+
+	"""Return the left child index of the node at INDEX."""
+	def get_left_child_index(self, index):
+		return index*2 + 1
+
+
+	"""Return the right child index of the node at INDEX."""
+	def get_right_child_index(self, index):
+		return index*2 + 2
+
+
+	"""Return the index of the parent node of the child at index INDEX."""
+	def get_parent_index(self, index):
+		return (index-1)//2
+
+
+	"""Return True if the node at index INDEX has a left child."""
+	def has_left_child(self, index):
+		return index*2 + 1 < len(self.data)
+
+
+	"""Return True if the node at index INDEX has a right child."""
+	def has_right_child(self, index):
+		return index*2 + 2 < len(self.data)
+
+
+	"""Return True if the node at index INDEX has a parent index."""
+	def has_parent(self, index):
+		return self.get_parent_index(index) >= 0
+
+
+	"""Swap 2 values at index I and index J."""
+	def swap(self, i, j):
+		temp = self.data[i]
+		self.data[i] = self.data[j]
+		self.data[j] = temp

@@ -16,8 +16,6 @@ def maxPoints(coords):
 
 
 
-
-
 """Given a list of integers A, return the length of the shortest, non-empty
    contiguous subarray of A with sum at least K.
    Returns NONE if there is no such subarray.
@@ -54,4 +52,9 @@ def reverse_digits(num):
 """."""
 def closest_palindrome(num):
   return
+
+
+
+
+
 

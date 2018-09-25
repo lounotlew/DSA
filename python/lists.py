@@ -211,6 +211,89 @@ def odd_even_sort(L):
    return L
 
 
+"""Given 2 values A and B, and a linked list L, swap the first node with the value A and
+   first node with value B. A and B may not be present in the linked list.
+   Swap should be in place, and should involve links, not swapping data.
+
+   e.g. input: 1 -> 2 -> 3 -> 4 -> 5, 1, 2
+        output: 2 -> 1 -> 3 -> 4 -> 5
+
+   Runtime: """
+def swap_nodes(L, a, b):
+   found_a = False
+   found_b = False
+
+   prev = None
+   curr_node = L.head
+
+   a_prev = None
+   a_node = None
+   b_prev = None
+   b_node = None
+
+   # Searching for A and B in 1 traversal to maintain O(n):
+   while found_a == False or found_b == False:
+      if curr_node == None:
+         break
+
+      if curr_node.value == a and curr_node.value == b:
+         return
+
+      elif curr_node.value == a and not found_a:
+         found_a = True
+         a_node = curr_node
+         a_prev = prev
+
+         prev = curr_node
+         curr_node = curr_node.next
+
+      elif curr_node.value == b and not found_b:
+         found_b = True
+         b_node = curr_node
+         b_prev = prev
+
+         prev = curr_node
+         curr_node = curr_node.next
+
+      else:
+         prev = curr_node
+         curr_node = curr_node.next
+
+   if found_a == False or found_b == False:
+      return
+
+   # If A is the head
+   if a_prev == None:
+      L.head = b_node
+
+   else:
+      a_prev.next = b_node
+
+   # If B is head
+   if b_prev == None:
+      L.head = a_node
+  
+   else:
+      b_prev.next = a_node
+
+   tmp = a_node.next
+   a_node.next = b_node.next
+   b_node.next = tmp
+
+
+def test_swap_nodes():
+   ll = SinglyLinkedList()
+   ll.append(1)
+   ll.append(2)
+   ll.append(3)
+   ll.append(4)
+   ll.append(5)
+
+   swap_nodes(ll, 2, 3)
+   return ll.traverse()
+
+
+
 """Given an unsorted linked list, sort it so that all the odd numbers are in the first half, and
    all the even numbers are in the second half. The odd/even halves do not need to be sorted.
 
@@ -226,15 +309,34 @@ def odd_even_sort_ll(L):
    e.g. input: 1->4->3->2->5
         output: 52341."""
 def reverse_ll_integer(L):
-   return
+   curr_node = L.head
+   pwr = 0
+   num = 0
 
+   while curr_node != None:
+      num += curr_node.value*(10**pwr)
+      pwr += 1
+      curr_node = curr_node.next
+
+   return num
+
+
+def test_reverse_ll_integer():
+   ll = SinglyLinkedList()
+   ll.append(1)
+   ll.append(4)
+   ll.append(3)
+   ll.append(2)
+   ll.append(5)
+
+   assert(everse_ll_integer(ll) == 52341)
 
 
 """Given an unsorted array L, find the average of averages of contiguous subarrays of size N.
    Return -1 if there are no such subarrays.
 
    e.g. input: [1, 2, 3, 4, 5, 6, 7, 8, 9], 7
-        output: 5."""
+        output: [4, 5, 6]."""
 def avg_of_avgs_subarray(L, n):
    if n > len(L):
       return []

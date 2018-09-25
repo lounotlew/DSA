@@ -11,7 +11,7 @@
 
    e.g. input: [[1,1],[3,2],[5,3],[4,1],[2,3],[1,4]]
         output: 4"""
-def maxPoints(coords):
+def max_points(coords):
 	return
 
 
@@ -23,7 +23,7 @@ def maxPoints(coords):
 
    e.g. input: A = [2, -1, 2], K = 3
         output: 3"""
-def shortestSubarray(A, k):
+def shortest_subarray(A, k):
 	return
 
 
@@ -51,6 +51,12 @@ def reverse_digits(num):
 
 """."""
 def closest_palindrome(num):
+  return
+
+
+
+"""."""
+def super_palindrome(nums):
   return
 
 

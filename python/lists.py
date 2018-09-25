@@ -5,6 +5,8 @@
 ############################################
 
 import math
+import statistics
+from linkedlist import SinglyLinkedList
 
 
 """Given a sorted array of integers, NUMS, remove the duplicates in-place such that each
@@ -167,13 +169,96 @@ def last_occurence_n(L, n):
    return
 
 
+"""Given an unsorted array L, sort it so that all the odd numbers are in the first half, and
+   all the even numbers are in the second half. The odd/even halves do not need to be sorted.
+
+   e.g. input: [1, 2, 3, 4, 5, 1, 3, 2]
+        output: [1, 3, 5, 1, 3, 2, 4, 2]."""
+def odd_even_sort(L):
+
+   """Even number checker."""
+   def is_even(n):
+      return n % 2 == 0
+
+   """Odd number checker."""
+   def is_odd(n):
+      return n % 2 == 1
+
+
+   i = 0
+   j = len(L)-1
+
+   while i <= j:
+      # If i and j are odd/even respectively, i.e. they're in the right place:
+      if is_odd(L[i]) and is_even(L[j]):
+         i += 1
+         j -= 1
+
+      # If i is odd and j is odd, then j needs to be swapped.:
+      elif is_odd(L[i]) and is_odd(L[j]):
+         i += 1
+
+      # If i is even and i is even, then i needs to be swapped:
+      elif is_even(L[i]) and is_even(L[j]):
+         j -= 1
+
+      # If i is even and j is odd, then we swap both.:
+      elif is_even(L[i]) and is_odd(L[j]):
+         L[i], L[j] = L[j], L[i]
+         i += 1
+         j -= 1
+
+   return L
+
+
+"""Given an unsorted linked list, sort it so that all the odd numbers are in the first half, and
+   all the even numbers are in the second half. The odd/even halves do not need to be sorted.
+
+   e.g. input: 1->4->3->2->5
+        output: 1->3->5->4->2."""
+def odd_even_sort_ll(L):
+   return
+
+
+"""Given a linked list L, create an integer whose digits are the linked list in reverse.
+   Assume there are no leading zeroes.
+
+   e.g. input: 1->4->3->2->5
+        output: 52341."""
+def reverse_ll_integer(L):
+   return
+
+
+
+"""Given an unsorted array L, find the average of averages of contiguous subarrays of size N.
+   Return -1 if there are no such subarrays.
+
+   e.g. input: [1, 2, 3, 4, 5, 6, 7, 8, 9], 7
+        output: 5."""
+def avg_of_avgs_subarray(L, n):
+   if n > len(L):
+      return -1
+
+   max_index = len(L)-n
+   num_subarrays = 0
+   subarray_avg = 0
+
+   for i in range(max_index+1):
+      subarray = L[i:i+n]
+
+      subarray_avg += statistics.mean(subarray)
+      num_subarrays += 1
+
+   return subarray_avg/num_subarrays
+
+
 """Given 2 sorted arrays, ARRAY1 and ARRAY2 (size m, n respectively), find
    the k-th smallest element in the union of ARRAY1 and ARRAY2.
 
    Method: Use a pointer and iterate through first k smallest elements in ARRAY1 and ARRAY2.
 
    Complexity: O(k)."""
-def kth_smallest_elem1(array1, array2):
+def kth_smallest_elem1(array1, array2, k):
    # We use a pointer.
 
 
@@ -184,7 +269,7 @@ def kth_smallest_elem1(array1, array2):
    the k-th smallest element in the union of ARRAY1 and ARRAY2.
 
    Complexity: O(logk)."""
-def kth_smallest_elem2(array1, array2):
+def kth_smallest_elem2(array1, array2, k):
    return
 
 

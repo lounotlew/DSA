@@ -237,19 +237,27 @@ def reverse_ll_integer(L):
         output: 5."""
 def avg_of_avgs_subarray(L, n):
    if n > len(L):
-      return -1
+      return []
 
-   max_index = len(L)-n
-   num_subarrays = 0
-   subarray_avg = 0
+   arr_sum = 0
+   head = 0
+   tail = 0
+   results = []
 
-   for i in range(max_index+1):
-      subarray = L[i:i+n]
+   while tail < len(L):
+      if tail < n:
+         arr_sum += L[tail]
+         tail += 1
 
-      subarray_avg += statistics.mean(subarray)
-      num_subarrays += 1
+      else:
+         results.append(arr_sum/n)
+         arr_sum = arr_sum - L[head] + L[tail]
+         head += 1
+         tail +=1
 
-   return subarray_avg/num_subarrays
+   results.append(arr_sum/n)
+
+   return results
 
 
 """Given 2 sorted arrays, ARRAY1 and ARRAY2 (size m, n respectively), find
